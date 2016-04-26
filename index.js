@@ -109,28 +109,41 @@ exports.run = function(runner, specs) {
       }
     });
 
-    mochaRunner.on('pass', function(test) {
-      runner.emit('testPass');
-      testResult.push({
-        description: test.title,
-        assertions: [{
-          passed: true
-        }],
-        duration: test.duration
-      });
-    });
-
-    mochaRunner.on('fail', function(test) {
-      runner.emit('testFail');
-      testResult.push({
-        description: test.title,
-        assertions: [{
-          passed: false,
-          errorMsg: test.err.message,
-          stackTrace: test.err.stack
-        }],
-        duration: test.duration
-      });
+    mochaRunner.on('variant end', function(variant) {
+      var testInfo = {
+        name: variant.parent.title + ' --> ' + variant.title,  // Scenario + Variant titles
+        category: variant.parent.parent.title  // Feature title
+      };
+      if (!variant.buggy) {
+        runner.emit('testPass', testInfo);
+        testResult.push({
+          description: testInfo.name,
+          assertions: [{
+            passed: true
+          }],
+          duration: variant.duration
+        });
+      } else {
+        var failedStep = null;
+        // Find the first failed step
+        variant.tests.every(function(step) {
+          if (step.state === 'failed') {
+            failedStep = step;
+            return false;
+          }
+          return true;
+        });
+        runner.emit('testFail', testInfo);
+        testResult.push({
+          description: testInfo.name + ' --> ' + failedStep.title,  // Add the failed step title
+          assertions: [{
+            passed: false,
+            errorMsg: failedStep.err.message,
+            stackTrace: failedStep.err.stack
+          }],
+          duration: variant.duration
+        });
+      }
     });
   }).catch(function(reason) {
     deferred.reject(reason);
