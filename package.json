@@ -1,0 +1,40 @@
+{
+  "name": "protractor-tartare",
+  "version": "1.0.0",
+  "description": "Tartare framework plugin for Protractor",
+  "license": "Apache-2.0",
+  "author": "Jose Antonio Rodríguez Fernández <joseantonio.rodriguezfernandez@telefonica.com>",
+  "main": "./index",
+  "scripts": {
+    "lint": "jscs index.js && eslint index.js",
+    "prepublish": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/telefonicaid/protractor-tartare.git"
+  },
+  "bugs": "https://github.com/telefonicaid/protractor-tartare/issues",
+  "engines": {
+    "node": ">=0.10",
+    "npm": ">=1.4.0"
+  },
+  "keywords": [
+    "testing",
+    "QA",
+    "acceptance",
+    "BDD",
+    "gherkin",
+    "DDT",
+    "framework",
+    "tartare",
+    "protractor",
+    "angular",
+    "selenium",
+    "webdriver",
+    "webdriverjs"
+  ],
+  "devDependencies": {
+    "eslint": "^2.8.0",
+    "jscs": "^3.0.3"
+  }
+}
