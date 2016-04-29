@@ -37,7 +37,8 @@
     "q": "^1.4.1"
   },
   "peerDependencies": {
-    "tartare": "*"
+    "protractor": ">= 1.7.0",
+    "tartare": ">= 0.7.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
