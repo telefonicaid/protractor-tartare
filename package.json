@@ -1,6 +1,6 @@
 {
   "name": "protractor-tartare",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tartare framework plugin for Protractor",
   "license": "Apache-2.0",
   "author": "Jose Antonio Rodríguez Fernández <joseantonio.rodriguezfernandez@telefonica.com>",

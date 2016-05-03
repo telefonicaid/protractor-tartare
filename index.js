@@ -95,7 +95,7 @@ exports.run = function(runner, specs) {
 
     var testResult = [];
 
-    var mochaRunner = tartare.mocha.run(function(failures) {
+    var tartareRunner = tartare.run(function(failures) {
       try {
         var completed = q();
         if (runner.getConfig().onComplete) {
@@ -112,7 +112,7 @@ exports.run = function(runner, specs) {
       }
     });
 
-    mochaRunner.on('variant end', function(variant) {
+    tartareRunner.on('variant end', function(variant) {
       var testInfo = {
         name: variant.parent.title + ' --> ' + variant.title,  // Scenario + Variant titles
         category: variant.parent.parent.title  // Feature title
